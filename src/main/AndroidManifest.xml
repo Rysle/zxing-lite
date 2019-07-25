@@ -1,2 +1,2 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.rysle.demo.library" />
+    package="com.rysle.lib.zxing" />
