@@ -1,0 +1,46 @@
+apply plugin: 'com.android.library'
+apply from: 'https://raw.githubusercontent.com/Rysle/PublishToBintray/master/publish.gradle'
+
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:3.4.2'
+    }
+}
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 28
+        versionCode 1
+        versionName getLibVersion()
+        consumerProguardFile 'proguard-rules.pro'
+
+        buildConfigField "String", "COMMIT", "\"${project.getCommitSha()}\""
+        buildConfigField "String", "COMMIT_TIME", "\"${project.getCommitTime()}\""
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+}
+
+repositories {
+    google()
+    jcenter()
+    mavenCentral()
+}
